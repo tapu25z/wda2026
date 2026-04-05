@@ -1,4 +1,4 @@
-# AGRI-SCAN AI | HỆ SINH THÁI NÔNG NGHIỆP THÔNG MINH KHÉP KÍN
+# AGRI-SCAN AI | HỆ SINH THÁI NÔNG NGHIỆP | WDA2026
 
 > **Dự án tham gia:** WebDev Adventure 2026
 
