@@ -1,0 +1,51 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: agriscan_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-changeme}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - agriscan_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: agriscan_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - agriscan_net
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: agriscan_rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - agriscan_net
+
+networks:
+  agriscan_net:
+    name: agriscan_net
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data:
+  rabbitmq_data:
