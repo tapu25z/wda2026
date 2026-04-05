@@ -1,0 +1,4 @@
+{
+  "python.defaultInterpreterPath": "apps/ai-service/venv/bin/python",
+  "python-envs.defaultEnvManager": "ms-python.python:system"
+}

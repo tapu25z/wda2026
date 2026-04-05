@@ -1,0 +1,23 @@
+{
+  "name": "@agri-scan/database",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "seed": "ts-node -r tsconfig-paths/register src/seeds/main.seed.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/mongoose": "^10.0.0",
+    "dotenv": "^17.3.1",
+    "mongoose": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3"
+  }
+}

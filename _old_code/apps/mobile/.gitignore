@@ -1,0 +1,8 @@
+# Expo & React Native specific
+.expo/
+web-build/
+expo-env.d.ts
+.kotlin/
+*.mobileprovision
+/ios
+/android

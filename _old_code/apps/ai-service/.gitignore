@@ -1,0 +1,18 @@
+# Python Virtual Environment
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# AI Models & Heavy Data
+*.pt
+*.h5
+*.onnx
+models/*
+!models/.gitkeep  # (Chỉ giữ lại thư mục rỗng, không giữ file model)
+temp/
+
+# Jupyter Notebook (Nếu team AI dùng)
+.ipynb_checkpoints/

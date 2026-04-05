@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-multipart
+gradio
+ultralytics
+langchain-core
+langchain-ollama
+Pillow
+langchain-huggingface
+sentence-transformers
+chromadb
+langchain_community
+python-dotenv
+pika
+timm

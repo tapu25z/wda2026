@@ -1,0 +1,25 @@
+.
+├── package.json
+├── project_tree.txt
+├── src
+│   ├── index.ts
+│   ├── schemas
+│   │   ├── Weather-rule.schema.ts
+│   │   ├── chat-history.schema.ts
+│   │   ├── disease.schema.ts
+│   │   ├── feedback.schema.ts
+│   │   ├── my-garden.schema.ts
+│   │   ├── order.schema.ts
+│   │   ├── payment.schema.ts
+│   │   ├── plant.schema.ts
+│   │   ├── product.schema.ts
+│   │   ├── scan-history.schema.ts
+│   │   └── user.schema.ts
+│   └── seeds
+│       ├── main.seed.ts
+│       ├── orders.seed.ts
+│       ├── products.seed.ts
+│       └── weather-rules.seed.ts
+└── tsconfig.json
+
+4 directories, 19 files

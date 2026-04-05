@@ -1,0 +1,107 @@
+name: agri-scan-ai
+
+services:
+  # 1. CƠ SỞ DỮ LIỆU CHÍNH (MONGODB)
+  mongodb:
+    image: mongo:8.0
+    container_name: asa-mongodb
+    restart: always
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-secretPassword}
+    volumes:
+      - asa-mongo-data:/data/db
+    networks:
+      - agri-net
+
+  # 2. BỘ NHỚ ĐỆM (REDIS)
+  redis:
+    image: redis:7.4-alpine
+    container_name: asa-redis
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - asa-redis-data:/data
+    networks:
+      - agri-net
+
+  # 3. MESSAGE BROKER (RABBITMQ) - ĐÃ CHỈNH LẠI CĂN LỀ
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: asa-rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"   # Cổng kết nối AMQP
+      - "15672:15672" # Cổng quản lý UI (Username/Pass: guest/guest)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - agri-net
+
+  # 4. AI SERVICE (PYTHON)
+  ai-service:
+    build:
+      context: ../../apps/ai-service
+      dockerfile: Dockerfile
+    container_name: asa-ai
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - rabbitmq
+    env_file:
+      - ../../.env 
+    volumes:
+      - ../../apps/ai-service/models:/app/models
+    networks:
+      - agri-net
+
+  # 5. BACKEND API (NESTJS)
+  backend:
+    build:
+      context: ../../
+      dockerfile: apps/backend/Dockerfile
+    container_name: asa-backend
+    restart: always
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb
+      - redis
+      - rabbitmq # Thêm rabbitmq vào đây để backend đợi rabbitmq khởi động xong
+      - ai-service
+    env_file:
+      - ../../.env 
+    networks:
+      - agri-net
+
+  # 6. WEB FRONTEND (NEXT.JS)
+  web:
+    build:
+      context: ../../
+      dockerfile: apps/web/Dockerfile
+    container_name: asa-web
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    env_file:
+      - ../../.env
+    networks:
+      - agri-net
+
+volumes:
+  asa-mongo-data:
+  asa-redis-data:
+  rabbitmq_data:
+
+networks:
+  agri-net:
+    driver: bridge

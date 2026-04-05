@@ -1,0 +1,22 @@
+{
+  "name": "@agri-scan/shared",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "axios": "^1.13.5",
+    "clsx": "^2.1.0",
+    "lucide-react-native": "^0.575.0",
+    "tailwind-merge": "^2.2.0",
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "typescript": "^5.0.0"
+  }
+}

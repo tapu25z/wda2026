@@ -1,0 +1,28 @@
+# --- System Files ---
+.DS_Store
+Thumbs.db
+.vscode/
+
+# --- Python (Dành cho team AI) ---
+**/venv/
+**/env/
+**/.venv/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# --- AI Models & Data (Quan trọng để không lag) ---
+*.h5
+*.pt
+*.onnx
+**/datasets/
+**/data/
+**/temp/
+
+# --- Node/JS (Dành cho Dev team) ---
+node_modules/
+**/dist/
+**/.expo/
+**/.next/
+.pnpm-debug.log

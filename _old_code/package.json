@@ -1,0 +1,23 @@
+{
+  "name": "agri-scan-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:web": "pnpm --filter web dev",
+    "dev:mobile": "pnpm --filter mobile start",
+    "dev:all": "pnpm -r --parallel run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/multer": "^2.0.0"
+  },
+  "dependencies": {
+    "expo": "~54.0.33",
+    "lucide-react-native": "^0.576.0",
+    "react-native-svg": "15.12.1"
+  }
+}
