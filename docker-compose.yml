@@ -18,7 +18,8 @@ services:
     container_name: agriscan_redis
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      # Nếu máy đã có Redis (brew) chiếm 6379: tạo file .env cạnh compose với REDIS_PUBLISH_PORT=6380
+      - "${REDIS_PUBLISH_PORT:-6379}:6379"
     volumes:
       - redis_data:/data
     command: redis-server --appendonly yes

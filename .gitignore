@@ -54,3 +54,6 @@ htmlcov/
 
 # Docker (optional local overrides)
 docker-compose.override.yml
+
+.pnpm-store/
+node_modules/
